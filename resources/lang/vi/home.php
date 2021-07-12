@@ -48,7 +48,5 @@ return [
     'or'=>'Hoặc',
     'accout'=>'Bạn đã có tài khoản ?',
     'create'=>'Tạo tài khoản',
-    "error" => 'Không chính xác'
-
-
+    "error" => 'Không chính xác',
 ];

@@ -271,6 +271,3 @@ function paginate(type, search) {
         });
     }
 }
-
-import { playMusicEvent, playSong, playMusic } from './playmusic';
-export { actionPlaylist };

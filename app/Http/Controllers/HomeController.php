@@ -79,19 +79,19 @@ class HomeController extends Controller
 
     public function topTrending()
     {
-        $songs = Song::select('view', 'name')->whereMonth('created_at', date('m'))
+        $songs = Song::select('view', 'name', 'id')->whereMonth('created_at', date('m'))
         ->orderBy('view', 'desc')->get();
 
         return view('music.top-trending', compact('songs'));
     }
-
+    
     public function searchFeature($search)
     {
         try {
             $songs = Song::where('name', 'like', '%'.$search.'%')->take(config('app.home_take_number'))->get();
             $albums = Album::where('name', 'like', '%'.$search.'%')->take(config('app.home_take_number'))->get();
             $artists = Artist::where('name', 'like', '%'.$search.'%')->take(config('app.home_take_number'))->get();
-
+    
             return view('search', compact('songs', 'albums', 'artists', 'search'));
         } catch (Throwable $e) {
             return redirect()->back()->with('danger', trans('homePage.noSearchResult'));

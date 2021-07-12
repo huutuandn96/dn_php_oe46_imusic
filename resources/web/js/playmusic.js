@@ -8,6 +8,7 @@ function playSong() {
     $('.song-list').click(function(e) {
         e.preventDefault();
         var id = $(this).data('id');
+    
         $.ajax({
             type:'get',
             url: '/song/'+id,
@@ -15,8 +16,8 @@ function playSong() {
             {
                 $('#music-playing').html(data);
                 playMusicEvent();
-                detailSong();
                 actionPlaylist();
+                detailSong();
             }
         })
     });
@@ -32,7 +33,6 @@ function detailSong() {
             url:'detail-song/'+id,
             success: function(data) {
             $('#profile').html(data);
-
 
             $("#formButton").click(function(evt) {
                  evt.preventDefault();
@@ -149,7 +149,7 @@ function detailSong() {
            }
         }
 
-     });
+    });
     });
 }
 
@@ -157,6 +157,7 @@ function playMusic() {
     $('.play-music').click(function(e) {
         e.preventDefault();
         var id = $(this).data('id');
+    
         $.ajax({
             type:'get',
             url: '/song/'+id,
@@ -165,8 +166,9 @@ function playMusic() {
                 $('#music-playing').html(data);
                 playMusicEvent();
                 actionPlaylist();
+                detailSong();
             }
-        })
+        })  
     });
 }
 playMusic();
@@ -175,7 +177,7 @@ var isRepeat = false;
 function playMusicEvent() {
     audio.play();
     var isPlaying = false;
-
+    
     $('.play').click(function(e) {
         e.preventDefault();
         if (isPlaying) {
@@ -184,11 +186,11 @@ function playMusicEvent() {
         } else {
             audio.play();
             $(this).addClass('playing');
-        }
+        }          
     });
 
     audio.onplay = function() {
-        isPlaying = true;
+        isPlaying = true; 
     }
 
     audio.onpause = function() {
@@ -200,11 +202,11 @@ function playMusicEvent() {
             var progressPercent = Math.floor(audio.currentTime / audio.duration *100);
             $('#progress').val(progressPercent);
             var currentTimeAudio = convertTime(Math.floor(audio.currentTime));
-            $('.current-time').html(currentTimeAudio);
+            $('.current-time').html(currentTimeAudio);  
             var durationAudio = convertTime(Math.floor(audio.duration));
-            $('.audio-duration').html(durationAudio);
+            $('.audio-duration').html(durationAudio);  
         }
-    }
+    } 
 
     progress.onchange = function (e) {
         var seekTime = audio.duration / 100 * e.target.value
@@ -224,13 +226,13 @@ function playMusicEvent() {
             type:'get',
             url: '/song/'+nextIndex,
             success: function(data)
-            {
+            {   
                 $('#music-playing').html(data);
                 playMusicEvent();
             }
         })
     });
-
+    
     $('.prev-song').click(function(e) {
         e.preventDefault();
         var id = $(this).data('id');
@@ -239,7 +241,7 @@ function playMusicEvent() {
         } else {
             var prevIndex = --id;
         }
-
+    
         $.ajax({
             type:'get',
             url: '/song/'+prevIndex,
@@ -249,12 +251,12 @@ function playMusicEvent() {
                 playMusicEvent();
             }
         })
-    });
-
+    }); 
+    
     audio.onended = function() {
         $('.next-song').click();
     }
-
+    
     $('.repeat-song').click(function(e) {
         e.preventDefault();
         if(!isRepeat) {
@@ -271,35 +273,34 @@ function playMusicEvent() {
             }
         }
     });
-
+    
     $('.random-song').click(function(e) {
         e.preventDefault();
         $(this).toggleClass('active');
     });
-}
-
-function convertTime(sec) {
-    var hours = Math.floor(sec/3600);
-    (hours >= 1) ? sec = sec - (hours*3600) : hours = '00';
-    var min = Math.floor(sec/60);
-    (min >= 1) ? sec = sec - (min*60) : min = '00';
-    (sec < 1) ? sec='00' : void 0;
-
-    (min.toString().length == 1) ? min = '0'+min : void 0;
-    (sec.toString().length == 1) ? sec = '0'+sec : void 0;
-
-    if (hours == '00') {
-        return min + ':' + sec;
-    } else {
-        return hours + ':' + min + ':' + sec;
+    
+    function convertTime(sec) {
+        var hours = Math.floor(sec/3600);
+            (hours >= 1) ? sec = sec - (hours*3600) : hours = '00';
+        var min = Math.floor(sec/60);
+            (min >= 1) ? sec = sec - (min*60) : min = '00';
+            (sec < 1) ? sec='00' : void 0;
+        
+            (min.toString().length == 1) ? min = '0'+min : void 0;    
+            (sec.toString().length == 1) ? sec = '0'+sec : void 0;    
+        
+        if (hours == '00') {
+            return min + ':' + sec;
+        } else {
+            return hours + ':' + min + ':' + sec;
+        }
     }
 }
 
-// playlist
 
 $('.btn_playlist').click(function(e) {
     e.preventDefault();
-
+    
     $.ajax({
         type:'get',
         url: '/create-playlists',
@@ -311,21 +312,24 @@ $('.btn_playlist').click(function(e) {
     });
 });
 
-$('.add-album-btn').click(function(e) {
-    e.preventDefault();
-
-    var id = $(this).data('id');
-    $.ajax({
-        type:'post',
-        url: '/add-album/'+id,
-        success: function(data)
-        {
-            $('.add-album-btn').addClass('active');
-            $(".playlist").load(location.href+" .playlist>*","");
-            // playlistSong();
-        }
+function addAlbumPlaylist() {
+    $('.add-album-btn').click(function(e) {
+        e.preventDefault();
+    
+        var id = $(this).data('id');
+    
+        $.ajax({
+            type:'post',
+            url: '/add-album/'+id,
+            success: function(data)
+            {
+                $('.add-album-btn').addClass('active');
+                $(".playlist").load(location.href+" .playlist>*","");
+                playlistSong();
+            }
+        });
     });
-});
+}
 
 $('.manage-playlist').click(function(e) {
     e.preventDefault();
@@ -337,14 +341,9 @@ $('.manage-playlist').click(function(e) {
         {
             $('.box_main').html(data);
             playlistSong();
-        }, error : (reponses)=> {
-           if(reponses.status == 401)
-           {
-            window.location = '/login'
-           }
         }
     });
-});
+});  
 
 function submitForm() {
     $('#create-playlist').submit(function(e) {
@@ -361,12 +360,7 @@ function submitForm() {
                 $('.box_main').html(data);
                 $(".playlist").load(location.href+" .playlist>*","");
                 playlistSong();
-            }, error : (reponses)=> {
-           if(reponses.status == 401)
-           {
-            window.location = '/login'
-           }
-        }
+            }
         });
     });
 }
@@ -442,7 +436,7 @@ function showSongList() {
     $('.add-song-btn').click(function(e) {
         e.preventDefault();
         var id = $(this).data('id');
-
+        
         $.ajax({
             type:'get',
             url: '/song-list/' + id,
@@ -468,7 +462,7 @@ function searchSong() {
                 $('#song-search').html(data);
                 actionPlaylist();
             }
-        });
+        }); 
     });
 }
 
@@ -559,21 +553,65 @@ function paginate(type, search) {
         var page = $(this).attr('href').split('page=')[1];
         getPosts(page);
     });
-
+ 
     function getPosts(page) {
         $.ajax({
             type: 'get',
             url: '/search/' + type + '/key/' + search + '?page='+ page,
-            success: function(data)
+            success: function(data) 
             {
                 $('.box_main').html(data);
                 paginate(type, search);
                 playSong();
-            }
+            } 
         });
     }
 }
 
-export {detailSong}
+$('.album-detail').click(function(e) {
+    e.preventDefault();
+    var album = $(this).data('id');
+    
+    $.ajax({
+        type: 'get',
+        url: '/album-detail/'+ album,
+        success: function(data) 
+        {
+            $('.box_main').html(data);
+            addAlbumPlaylist();
+            playMusic();
+            actionPlaylist();
+        } 
+    });
+})
 
+$('.artist-detail').click(function(e) {
+    e.preventDefault();
+    var artist = $(this).data('id');
+    
+    $.ajax({
+        type: 'get',
+        url: '/artist-detail/'+ artist,
+        success: function(data) 
+        {
+            $('.box_main').html(data);
+            addAlbumPlaylist();
+            playMusic();
+            actionPlaylist();
+        } 
+    });
+})
 
+$('.top_tren').on('click', function(e){
+    e.preventDefault()
+    $.ajax({
+        method:'GET',
+        url :'/top-trending-song',
+        async: false,
+        success: function (data) {
+            $('.box_main').html(data);
+            playMusic();
+            actionPlaylist();
+        }
+    })
+});

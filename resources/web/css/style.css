@@ -294,6 +294,7 @@ h1, h2, h3, h4, a {
   font-weight: 700;
   text-transform: uppercase;
 }
+
 .main .box_main .nav_bar_main a:hover {
   transition: color 1s;
   color: #ffffff;

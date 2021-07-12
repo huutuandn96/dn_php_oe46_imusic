@@ -61,10 +61,8 @@ Route::get('/get-song-by-category/{id}', [App\Http\Controllers\HomeController::c
 
 Route::get('/song/{id}', [App\Http\Controllers\HomeController::class, 'songPlaying'])->name('home.songPlaying');
 
-
-Route::get('/show-category', [App\Http\Controllers\HomeController::class, 'renderHome']);
-
 Route::get('album-detail/{album}', [PageDetailController::class, 'showAlbum'])->name('showAlbum');
+Route::get('artist-detail/{artist}', [PageDetailController::class, 'showArtist'])->name('showArtist');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('playlists', [PlaylistController::class, 'showPlaylists'])->name('playlists');
@@ -84,14 +82,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('favorite-song/{song}', [PlaylistController::class, 'addFavoriteSong'])->name('addFavoriteSong');
 });
 
-Route::get('artist-detail/{artist}', [PageDetailController::class, 'showArtist'])->name('showArtist');
+Route::get('search/{search}', [HomeController::class, 'searchFeature'])->name('home.search');
 
-Route::get('/detail-song/{id}', [App\Http\Controllers\SongController::class, 'detailSong'])
+Route::get('/show-category', [App\Http\Controllers\HomeController::class, 'renderHome']);
+
+Route::get('detail-song/{id}', [App\Http\Controllers\SongController::class, 'detailSong'])
 ->name('detail-song')-> middleware('auth');
 
 Route::get('/hot/{id}', [App\Http\Controllers\HomeController::class, 'hotAlbumMusic']);
 
 Route::post('/song-comment', [App\Http\Controllers\SongController::class, 'storeComent']);
+
 
 Route::post('/add-lyric', [App\Http\Controllers\SongController::class, 'addLyric']);
 

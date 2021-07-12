@@ -18,7 +18,7 @@
         </ul>
         <div class="music">
             <div class="recently_played">
-                <h2 class="title">@lang('homePage.newestMusic')</h2>
+                <h2>@lang('homePage.newestMusic')</h2>
                 <div class="row list_song">
                     @if (isset($songs))
                         @foreach ($songs as $song)
@@ -35,8 +35,8 @@
                 <h2>@lang('homePage.albumSong')</h2>
                 <div class="row get_album">
                     @foreach ($albums as $album)
-                        <a class="box_music" href="{{ route('showAlbum', ['album' => $album->id])}}">
-                            <img src="/storage/{{ $album->image }}" alt="Death Cab fot Cutie">
+                        <a class="box_music album-detail" data-id={{ $album->id }} href="">
+                            <img src="{{ $album->image }}" alt="Death Cab fot Cutie">
                             <h3>{{ $album->name }}</h3>
                         </a>
                     @endforeach
@@ -46,7 +46,7 @@
                 <h2>@lang('homePage.artistSong')</h2>
                 <div class="row  get_artist">
                     @foreach ($artists as $artist)
-                        <a class="box_music" href="{{ route('showArtist', ['artist' => $artist->id])}}">
+                        <a class="box_music artist-detail" data-id={{ $artist->id }} href="">
                             <img src="{{ $artist->image }}" alt="Death Cab fot Cutie">
                             <h3>{{ $artist->name }}</h3>
                         </a>
@@ -55,6 +55,6 @@
             </div>
         </div>
     </section>
-   </div>
+  </div>
 </div>
 @stop

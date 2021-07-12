@@ -49,5 +49,5 @@ return [
     'or'=>'OR',
     'account'=>'You have acount',
     'create'=>'Create Account',
-    'error' => 'Wrong'
+    'error' => 'Wrong',
 ];
