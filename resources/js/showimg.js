@@ -38,3 +38,7 @@ window.onclick = function(event) {
     }
   }
 }
+$('.custom-select').change(function (){
+    $("#form_order").submit();
+})
+

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -54,6 +55,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             \App\Repositories\Comment\ICommentRepository::class,
             \App\Repositories\Comment\CommentRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Repositories\Chart\IChartRepository::class,
+            \App\Repositories\Chart\ChartRepository::class
         );
     }
 

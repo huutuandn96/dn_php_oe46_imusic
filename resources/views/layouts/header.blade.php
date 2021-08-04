@@ -88,6 +88,42 @@
           <a class="btn_login " href="{{route('get.login')}}">LOG IN</a>
           @endif
       </div>
+      <div class="notification">
+        @if (Auth::check())
+            <div class="cart-items">{{ Auth::user()->UnReadNotifications->count() }}</div>
+        @endif
+        <div class="cart-box">
+            <div class="cart-icon">
+              <i class="far fa-bell"></i>
+            </div>
+            <div class="cart-product">
+                <div class="cart-product-list">
+                    <table>
+                        <tbody class="new-notify">
+                          @if (Auth::check())
+                            @foreach (Auth::user()->unReadNotifications as $noti)
+                              <tr class="notif-count" data-id="{{ $noti->id }}" data-album="{{ $noti->data['id'] }}">
+                                <td class="product-pic">
+                                    <a>
+                                        <img src="/storage/{{ $noti->data['image'] }}" alt="">
+                                    </a>  
+                                </td>
+                                <td class="product-text">
+                                    <a>
+                                        <div class="product-info">
+                                            <span>{{ $noti->data['name'] }}</span>
+                                        </div>
+                                    </a>
+                                </td>
+                              </tr>
+                            @endforeach
+                          @endif
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+      </div>
         <div class="nav-item dropdown">
           <div class="dropdown">
                @php $locale = session()->get('locale'); @endphp
