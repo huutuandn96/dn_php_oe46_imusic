@@ -79,10 +79,10 @@
       <div>
           @if(Auth::check())
           <a class="btn_signup " id="pro_file" data-user-profile="{{ auth()->user()->id}}" href=""><i class="fas fa-user-circle"></i> {{auth()->user()->fullname}} </a>
-          <a class="btn_login " href="{{route('logout')}}">LOG OUT</a>
+          <a class="btn_login " href="{{route('logout')}}">@lang('home.logout')</a>
           @else
-          <a class="btn_signup " href="{{route('get.register')}}">SIGN UP</a>
-          <a class="btn_login " href="{{route('get.login')}}">LOG IN</a>
+          <a class="btn_signup " href="{{route('get.register')}}">@lang('home.signup')</a>
+          <a class="btn_login " href="{{route('get.login')}}">@lang('home.login')</a>
           @endif
       </div>
       <div class="notification">
@@ -98,17 +98,17 @@
                     <table>
                         <tbody class="new-notify">
                           @if (Auth::check())
-                            @foreach (Auth::user()->unReadNotifications as $noti)
-                              <tr class="notif-count" data-id="{{ $noti->id }}" data-album="{{ $noti->data['id'] }}">
+                            @foreach (Auth::user()->unReadNotifications as $notification)
+                              <tr class="notif-count" id="detail-noti" data-id ="{{$notification->id}}" data-song="{{$notification->data['id']}}" data-album="{{ $notification->data['id'] }}">
                                 <td class="product-pic">
                                     <a>
-                                        <img src="/storage/{{ $noti->data['image'] }}" alt="">
+                                        <img src="/storage/{{ $notification->data['image'] }}" alt="">
                                     </a>  
                                 </td>
                                 <td class="product-text">
                                     <a>
                                         <div class="product-info">
-                                            <span>{{ $noti->data['name'] }}</span>
+                                            <span>{{ $notification->data['name'] }}</span>
                                         </div>
                                     </a>
                                 </td>
@@ -129,19 +129,19 @@
                     @switch($locale)
                         @case('vi')
                         <img src="{{asset('storage/img/vn.png')}}"> VN
-                        @break
-                        @case('en')
+                      @break
+                      @case('en')
                         <img src="{{asset('storage/img/en.png')}}"> English
-                        @break
-                        @default
+                      @break
+                      @default
                         <img src="{{asset('storage/img/vn.png')}}"> VN
-                    @endswitch
-                    <span class="caret"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('change-language',['vi'])}}"><img src="{{asset('storage/img/vn.png')}}"> VN</a>
-                    <a class="dropdown-item" href="{{route('change-language',['en'])}}"><img src="{{asset('storage/img/en.png')}}"> English</a>
-                </div>
-             </div>
-          </div>
+                  @endswitch
+                  <span class="caret"></span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ route('change-language',['vi'])}}"><img src="{{asset('storage/img/vn.png')}}"> VN</a>
+                  <a class="dropdown-item" href="{{route('change-language',['en'])}}"><img src="{{asset('storage/img/en.png')}}"> English</a>
+              </div>
+           </div>
+        </div>
       </div>

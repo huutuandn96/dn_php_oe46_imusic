@@ -23,7 +23,7 @@ return [
     'Hidden' => '0',
 
     'Show' => '1',
-    
+
     'search_take_num' => '20',
 
     'lyric_hidden' => '0',
@@ -35,6 +35,8 @@ return [
     'actionHot' => 'hot',
 
     'user' => '0',
+
+    'notRead'=>'null',
 
     /*
     |--------------------------------------------------------------------------
@@ -210,6 +212,7 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*

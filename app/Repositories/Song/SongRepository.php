@@ -7,6 +7,17 @@ use App\Models\Artist;
 use App\Models\Category;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Notification;
+use App\Models\User;
+use Illuminate\Notifications\Notifiable;
+use App\Jobs\SendNotifiNewSongJob;
+use Mail;
+use App\Mail\NotificationNewSong;
+use Carbon\Carbon;
+use App\Notifications\NewSongNotify;
+use Pusher\Pusher;
+use App\Events\NotificationEventSong;
+use Illuminate\Support\Facades\DB;
 use App\Repositories\Song\ISongRepository;
 
 class SongRepository extends BaseRepository implements ISongRepository
@@ -37,6 +48,8 @@ class SongRepository extends BaseRepository implements ISongRepository
             'link'=>$data['link'],
             'artist_id' => $data['art_id']
         ]);
+
+        $this->sendNotify($song);
 
         return $song;
     }
@@ -146,5 +159,41 @@ class SongRepository extends BaseRepository implements ISongRepository
     public function searchSong($search)
     {
         return $this->model->searchName($search)->paginate(config('app.search_take_num'));
+    }
+
+    public function sendNotify($song)
+    {
+        $users = User::where('is_admin', config('app.user'))->get();
+
+        foreach ($users as $user) {
+            dispatch(new SendNotifiNewSongJob($user, $song))->delay(Carbon::now()->addSeconds(10));
+
+            $user->notify(new NewSongNotify($song));
+        }
+
+        $options = array(
+            'cluster' => 'ap1',
+            'encrypted' => true
+        );
+
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            $options
+        );
+
+        $pusher->trigger('NotificationEventSong', 'send-message', $song);
+    }
+
+    public function markAsRead($notificationId)
+    {
+        DB::table('notifications')->where('id', $notificationId)->update(['read_at'=>Carbon::now()]);
+
+        $countRead = DB::table('notifications')->where('read_at', config('app.notRead'))
+        ->where('notifiable_id', auth()->user()->id)
+        ->count();
+
+        return $countRead;
     }
 }

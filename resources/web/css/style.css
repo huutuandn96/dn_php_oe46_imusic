@@ -952,8 +952,8 @@ max-width: 400px;
 .dropdown-menu {
     display: none;
     position: absolute;
-    top: 100%;
-    left: 0;
+    top: 40px;
+    left: -60px;
     min-width: 160px;
     padding: 8px 0;
     background: white;
@@ -1199,7 +1199,6 @@ max-width: 400px;
 
 .dropdown_r:hover .dropdown-content_r {display: block;
                                    display:line}
-
 
 .notification {
     position: relative;

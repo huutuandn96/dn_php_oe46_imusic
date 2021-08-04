@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Console\Commands\SendMailToAllUserCreateAlbumCommand;
+use App\Console\Commands\SendMailToAllUserCreateSongCommand;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,6 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         SendMailToAllUserCreateAlbumCommand::class,
+        SendMailToAllUserCreateSongCommand::class
     ];
 
     /**
@@ -25,7 +27,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('album:sendAllUsers')->dailyAt('17:00');
+        $schedule->command('album:sendAllUsers')->everyMinute();
+        $schedule->command('mail:send-alluser')->everyMinute();
     }
 
     /**

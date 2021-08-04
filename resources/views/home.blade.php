@@ -23,7 +23,7 @@
                     @if (isset($songs))
                         @foreach ($songs as $song)
                             <a class="box_music song-list" href="" data-id = "{{ $song->id }}">
-                                <img src="{{ $song->image }}" alt="Loud Like Love">
+                                <img src="/storage/{{ $song->image }}" alt="Loud Like Love">
                                 <h3>{{ $song->name }}</h3>
                                 <h4>{{ $song->artist->name }}</h4>
                             </a>

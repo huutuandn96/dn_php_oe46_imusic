@@ -80,7 +80,7 @@
                         <form id="form1">
                           <b> {{$song->name}}</b>
                           <br>
-                          <textarea name="content" class="content" cols="65" rows="5">
+                          <textarea name="content" class="content" cols="65" rows="5" required>
                           </textarea>
                           <br><br>
                           <button type="button" id="add_lyric" data-song

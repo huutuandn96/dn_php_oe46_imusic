@@ -49,11 +49,6 @@ class LoginController extends Controller
         'facebook','google'
     ];
 
-    public function show()
-    {
-        return view('social.login');
-    }
-
     public function redirectToProvider($driver)
     {
         if( ! $this->isProviderAllowed($driver) ) {
@@ -68,8 +63,7 @@ class LoginController extends Controller
         }
     }
 
-
-    public function handleProviderCallback( $driver )
+    public function handleProviderCallback($driver)
     {
         try {
             $user = Socialite::driver($driver)->user();

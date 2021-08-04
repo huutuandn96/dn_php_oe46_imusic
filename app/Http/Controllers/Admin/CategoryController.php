@@ -22,6 +22,7 @@ class CategoryController extends Controller
 
     public function index()
     {
+
         $categories = $this->categoryRepository->showAll();
 
         return view('admin.category.index', compact('categories'));
@@ -70,6 +71,7 @@ class CategoryController extends Controller
                 'error' => false,
             ], 200);
         } catch (Throwable $e) {
+
             return redirect()->route('categories.index')->with('danger', trans('category.delNot'));
         }
     }

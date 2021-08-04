@@ -3491,7 +3491,7 @@ body::-webkit-scrollbar-thumb {
   margin-bottom: 30px;
 }
 .comments__title h4 {
-  color: #fff;
+  color: black;
   font-weight: 400;
   font-size: 24px;
   line-height: 100%;
@@ -3796,4 +3796,7 @@ body::-webkit-scrollbar-thumb {
 .rating span.checked ~ span label {
     background:#F90;
     color:#FFF;
+}
+.view {
+    color: white !important;
 }

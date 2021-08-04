@@ -38,7 +38,13 @@ window.onclick = function(event) {
     }
   }
 }
-$('.custom-select').change(function (){
+$('.album-select').change(function (){
     $("#form_order").submit();
 })
 
+
+$(function (){
+      $('.custom-select').change(function (){
+          $("#form_song").submit();
+      })
+  })

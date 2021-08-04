@@ -10,6 +10,7 @@ use Throwable;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Lyric\ILyricRepository;
 
+
 class LyricController extends Controller
 {
     protected $lyricRepository;
@@ -76,6 +77,7 @@ class LyricController extends Controller
     {
         DB::beginTransaction();
         try {
+
             $this->lyricRepository->destroy($id);
 
             return redirect()->route('lyric.index')->with('success', trans('lyric.deleteSuccess'));

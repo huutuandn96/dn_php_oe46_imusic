@@ -41,6 +41,7 @@ class PageDetailController extends Controller
     public function showArtist($artist)
     {
         try {
+
             $artist = $this->artistRepository->findOrFail($artist);
             $songs = $artist->songs;
 
