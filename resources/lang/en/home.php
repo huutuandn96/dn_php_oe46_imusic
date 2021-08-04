@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'home' => 'Home',
-    'libri' => 'Your libray',
+    'home' => 'Home',   
+    'libri' => 'Your library',
     'song' => 'Song',
     'playlist'=> 'Playlist',
     'newplaylist'=> 'New Playlist',
@@ -25,6 +25,7 @@ return [
     'login'=>'Log in',
     'logout'=>'Log out',
     'signup'=>'SiGN UP',
+    'register'=> 'Register',
     'placeholder' => 'What do you want to find?',
     'search' => "Search",
     'Notid' => 'Not find id',
@@ -37,7 +38,6 @@ return [
     'delUse' =>'Delete acount',
     'changesuccss'=>'Change password success',
     'repair'=>'Re-enter incorrect password',
-    'notpass'=>'Old password is not precision',
     'top' => 'Top Trending',
     'notpass'=>'Old password is not precision',
     'Notlogin'=>'Email-Address And Password Are Wrong.',
@@ -57,4 +57,16 @@ return [
     'month' => 'Month Report',
     'quarter' => 'Quarter Report',
     'year' => 'Year Report',
+    'imusicSign' => 'iMusic Page.',
+    'emailDear' => 'Hi there,',
+    'albumRelease' => 'This is all new albums\'s list released in iMusic Website today',
+    'no' => 'No.',
+    'newAlbumsMail' => 'There\'s new albums released in iMusic website today',
+    'nosignup' => 'You are not acount',
+    'logingg'=>'Login with Google',
+    'loginfb'=>'Login with Facebook',
+    'or'=>'OR',
+    'account'=>'You have acount',
+    'create'=>'Create Account',
+    'error' => 'Wrong',
 ];

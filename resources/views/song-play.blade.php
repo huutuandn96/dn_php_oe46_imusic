@@ -6,7 +6,8 @@
             <a href="#"><span class="white-font">{{ $song->artist->name }}</span></a>
             <a class="pink_floyd" href="#"><span class="white-font">{{ $song->name }}</span></a>
         </div>
-        <a class="heart" href="#"><i class="far fa-heart"></i></a>
+        <a class="heart add-favorite-song" data-song ="{{ $song->id }}" href="#"><i class="far fa-heart"></i></a>
+        <a class="view"><i class="fa fa-headphones" aria-hidden="true"></i> {{ $song->view }}</a>
     </div>
     <div class="center">
         <div class="top">
@@ -32,4 +33,4 @@
         <input id="volProgress" class="volProgress" type="range" value="0.5" step="0.05" min="0" max="1">
     </div>
 </div>
-@endif  
+@endif

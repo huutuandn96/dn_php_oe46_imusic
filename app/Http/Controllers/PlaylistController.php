@@ -157,7 +157,7 @@ class PlaylistController extends Controller
 
     public function addFavoriteSong($idSong)
     {
-        $this->playlistRepository->addSonginPlaylist($idSong);
+        $this->playlistRepository->addFavoriteSong($idSong);
 
         return response()->json([
             'error' => false,

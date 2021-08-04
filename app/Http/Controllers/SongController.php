@@ -1,13 +1,13 @@
 <?php
 namespace App\Http\Controllers;
 
+use Throwable;
 use App\Models\Song;
-use App\Models\Comment;
 use App\Models\Lyric;
+use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Throwable;
 use App\Repositories\Song\ISongRepository;
 use App\Repositories\Comment\ICommentRepository;
 use App\Repositories\Lyric\ILyricRepository;

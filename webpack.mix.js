@@ -18,8 +18,5 @@ mix.js('resources/js/app.js', 'public/js/app.js')
     .js('resources/js/admin.js','public/js/admin.js')
     .js('resources/web/js/playmusic.js', 'public/js/playmusic.js')
     .js('resources/js/showsong.js', 'public/js/showsong.js')
-    .js('resources/js/hot_album_music.js','public/js/hot_album_music.js')
     .js('resources/js/profile.js', 'public/js/profile.js')
-    .js('resources/web/js/playlist.js','public/js/playlist.js')
-    .js('resources/js/album.js','public/js/album.js')
-    .js('resources/js/topTrending.js','public/js/topTrending.js');
+    .js('resources/js/album.js','public/js/album.js');

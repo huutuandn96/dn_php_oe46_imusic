@@ -49,9 +49,14 @@ class LoginController extends Controller
         'facebook','google'
     ];
 
+    public function show()
+    {
+        return view('social.login');
+    }
+
     public function redirectToProvider($driver)
     {
-        if (!$this->isProviderAllowed($driver)) {
+        if( ! $this->isProviderAllowed($driver) ) {
             return $this->sendFailedResponse("{$driver} is not currently supported");
         }
 
@@ -64,7 +69,7 @@ class LoginController extends Controller
     }
 
 
-    public function handleProviderCallback($driver)
+    public function handleProviderCallback( $driver )
     {
         try {
             $user = Socialite::driver($driver)->user();
@@ -72,7 +77,7 @@ class LoginController extends Controller
             return $this->sendFailedResponse($e->getMessage());
         }
 
-        return empty($user->email)
+        return empty( $user->email )
             ? $this->sendFailedResponse("No email id returned from {$driver} provider.")
             : $this->loginOrCreateAccount($user, $driver);
     }
@@ -91,7 +96,7 @@ class LoginController extends Controller
     protected function loginOrCreateAccount($providerUser, $driver)
     {
         $user = User::where('email', $providerUser->getEmail())->first();
-        if ($user) {
+        if( $user ) {
             $user->update([
                 'avatar' => $providerUser->avatar,
                 'provider' => $driver,

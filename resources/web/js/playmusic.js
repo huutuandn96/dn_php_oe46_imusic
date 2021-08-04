@@ -306,7 +306,6 @@ function playMusicEvent() {
     }
 }
 
-
 $('.btn_playlist').click(function(e) {
     e.preventDefault();
 
@@ -651,7 +650,6 @@ function artistDetail()
 }
 albumDetail();
 artistDetail();
-
 
 function topTren()
 {

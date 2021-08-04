@@ -25,7 +25,7 @@
         <div class="row">
             @if (count($albums) > 0)
                 @foreach ($albums as $album)
-                    <a class="box_music" href="{{ route('showAlbum', ['album' => $album->id])}}">
+                    <a class="box_music album-detail" data-id={{ $album->id }}>
                         <img src="{{ $album->image }}" alt="Death Cab fot Cutie">
                         <h3>{{ $album->name }}</h3>
                     </a>
@@ -41,8 +41,8 @@
         <div class="row">
             @if (count($artists) > 0)
                 @foreach ($artists as $artist)
-                    <a class="box_music" href="{{ route('showArtist', ['artist' => $artist->id])}}">
-                        <img src="{{ $artist->image }}" alt="Death Cab fot Cutie">
+                    <a class="box_music artist-detail" data-id={{ $artist->id }}>
+                        <img src="{{ $artist->avatar }}" alt="Death Cab fot Cutie">
                         <h3>{{ $artist->name }}</h3>
                     </a>
                 @endforeach

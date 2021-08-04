@@ -67,7 +67,7 @@ class AlbumRepository extends BaseRepository implements IAlbumRepository
             'image' => $image_path,
         ]);
 
-        $users = User::isAdmin()->get();
+        $users = User::isNotAdmin()->get();
         foreach ($users as $user) {
             dispatch(new SendEmailAlbum($user, $album))->delay(Carbon::now()->addSeconds(3));
             $user->notify(new NewAlbumNotify($album));

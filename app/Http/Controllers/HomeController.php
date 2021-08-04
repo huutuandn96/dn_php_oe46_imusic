@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Song;
+use App\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use App\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Repositories\Category\ICategoryRepository;
 use App\Repositories\Song\ISongRepository;
 use App\Repositories\Album\IAlbumRepository;
 use App\Repositories\Artist\IArtistRepository;
+use App\Repositories\Category\ICategoryRepository;
 
 class HomeController extends Controller
 {
@@ -96,7 +97,7 @@ class HomeController extends Controller
 
         return view('music.top-trending', compact('songs'));
     }
-
+    
     public function searchFeature($search)
     {
         try {

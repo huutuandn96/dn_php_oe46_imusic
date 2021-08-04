@@ -74,6 +74,7 @@ class LyricController extends Controller
 
     public function destroy($id)
     {
+        DB::beginTransaction();
         try {
             $this->lyricRepository->destroy($id);
 

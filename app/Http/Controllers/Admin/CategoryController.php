@@ -61,7 +61,7 @@ class CategoryController extends Controller
         return redirect()->route('categories.index')->with('success', trans('category.editSuccess'));
     }
 
-    public function destroy($id)
+    public function destroy(Category $category)
     {
         try {
             $this->categoryRepository->destroy($id);

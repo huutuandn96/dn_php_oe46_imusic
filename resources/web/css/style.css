@@ -21,6 +21,11 @@ h1, h2, h3, h4, a {
   color: #b3b3b3;
 }
 
+.notification{
+  width: 20px;
+  color: white !important;
+}
+
 .container_big {
   width: 100%;
   height: calc(100vh - 90px);
@@ -1077,8 +1082,8 @@ max-width: 400px;
 }
 
 .dropdown-content_r {
-  margin-right: .5rem!important;
   display: none;
+  margin-right: .5rem!important;
   position: absolute;
   left:80px;
   top:-30px;
@@ -1237,6 +1242,7 @@ max-width: 400px;
     height: 18px;
     font-weight: 500;
     border: 1px solid #e5101d;
+    color: #000;
 }
 
 .cart-box.show .cart-product {

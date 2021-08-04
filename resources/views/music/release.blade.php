@@ -2,9 +2,8 @@
     <div class="scroll-content">
         <ul class="main__list main__list--playlist main__list--dashbox">
              @foreach($cate_songs as $cate_song)
-
+                <a class="single-item__cover">
                     <img src="/storage/{{$cate_song->image}}" alt="" />
-
                 </a>
                 <div class="single-item__title">
                     <h4><a href="#">{{$loop->index+1}}.{{$cate_song->name}}</a></h4>

@@ -129,7 +129,7 @@ $('._hotS').on('click', function (e) {
                 }else {
                     var title = "Album hot"
                     Object.keys(data['albums']).forEach(key => {
-                    html += '<a class="box_music album-detail" data-id= '+ data['albums'].[key].id +'  href="">' +
+                    html += '<a class="box_music album-detail" data-id= '+ data['albums'][key].id +'  href="">' +
                             '<img src="'+ data['albums'][key].image +'" alt="">'+
                             '<h3>'+data['albums'][key].name+'</h3>'+
                             '</a>';
